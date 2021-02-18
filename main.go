@@ -4,10 +4,16 @@ package main
 
 import "os"
 
-const host = "go-mux-tutorial-db.cnayavcudnyb.ap-southeast-1.rds.amazonaws.com"
+var host = "go-mux-tutorial-db.cnayavcudnyb.ap-southeast-1.rds.amazonaws.com"
+
 const port = 5432
+const LOCALHOST_DB = true
 
 func main() {
+	if LOCALHOST_DB == true {
+		host = "localhost"
+	}
+
 	a := App{}
 	a.Initialize(
 		host,
