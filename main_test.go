@@ -16,6 +16,16 @@ import (
 var a App
 
 func TestMain(m *testing.M) {
+	host := os.Getenv("APP_DB_HOST")
+	if host == "" {
+		host = "localhost"
+	}
+
+	port := getIntEnv("APP_DB_PORT")
+	if port == 0 {
+		port = 5432
+	}
+
 	a.Initialize(
 		host,
 		port,

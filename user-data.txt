@@ -1,0 +1,13 @@
+sudo yum update -y
+sudo yum install -y golang
+mkdir /home/ec2-user/projects
+export GOPATH=/home/ec2-user/projects
+export GOROOT=/usr/lib/golang
+cd /home/ec2-user/projects
+aws s3 cp s3://go-mux/go-mux /home/ec2-user/projects --recursive
+export APP_DB_USERNAME="postgres"
+export APP_DB_PASSWORD="postgres"
+export APP_DB_NAME="go_mux_db"
+export APP_DB_HOST="go-mux-tutorial-db.cnayavcudnyb.ap-southeast-1.rds.amazonaws.com"
+export APP_DB_PORT=5432
+go run .
